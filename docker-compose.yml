@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  browser-use:
+    build: .
+    container_name: browser-use-app
+    environment:
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - FEISHU_WEBHOOK_URL=${FEISHU_WEBHOOK_URL:-}
+      - HEADLESS=${HEADLESS:-true}
+      - BROWSER_WIDTH=${BROWSER_WIDTH:-1920}
+      - BROWSER_HEIGHT=${BROWSER_HEIGHT:-1080}
+      - DEBUG=${DEBUG:-false}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    volumes:
+      # 如果需要持久化数据，可以挂载卷
+      - ./logs:/app/logs
+    # 如果需要访问宿主机的显示服务器（GUI模式）
+    # volumes:
+    #   - /tmp/.X11-unix:/tmp/.X11-unix
+    # environment:
+    #   - DISPLAY=${DISPLAY}
+    # network_mode: host
+    restart: unless-stopped
+
+    # 如果需要运行特定的脚本，可以覆盖默认命令
+    # command: python src/clipboard.py
+
+    # 安全配置
+    security_opt:
+      - seccomp:unconfined # 某些浏览器操作可能需要
+
+    # 如果需要访问音频设备
+    # devices:
+    #   - /dev/snd:/dev/snd
+
+    # 内存限制（可选）
+    mem_limit: 2g
+
+    # 如果应用需要特权访问
+    # privileged: true
