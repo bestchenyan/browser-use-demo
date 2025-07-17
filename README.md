@@ -37,7 +37,7 @@ docker compose exec browser-use bash
 Run `browser-use` inside the container:
 
 ```sh
-python gpt-demo.py
+python agent.py
 ```
 
 ## Connect via VNC
