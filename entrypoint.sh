@@ -13,7 +13,13 @@ x11vnc -display :99 \
        -listen 0.0.0.0 \
        -N -forever \
        -passwd secret \
-       -shared &
+       -shared \
+       -ncache 10 \
+       -ncache_cr \
+       -cursor arrow \
+       -cursor_pos \
+       -scale_cursor \
+       -solid &
 
 # 等待服务启动
 sleep 3
