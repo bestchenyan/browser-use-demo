@@ -4,11 +4,11 @@ services:
     image: vovan/browser-use
     container_name: browser-use
     environment:
-      - OPENAI_API_KEY=${OPENAI_BROWSER_USE_KEY}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
       - BROWSER_USE_LOGGING_LEVEL=debug
     volumes:
       - .:/app
     ports:
-      - '5900:5900'
+      - "5900:5900"
     extra_hosts:
-      - 'host.docker.internal:host-gateway'
+      - "host.docker.internal:host-gateway"
